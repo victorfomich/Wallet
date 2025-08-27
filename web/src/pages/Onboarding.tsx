@@ -50,13 +50,13 @@ export default function WelcomeScreen() {
 
   return (
     <AppRoot>
-      <div className="fixed inset-0 flex flex-col items-center justify-between p-6 bg-gradient-to-b from-indigo-500 to-blue-600 text-white" style={{ minHeight: 'var(--app-vh, 100svh)' }}>
+      <div className="fixed inset-0 flex flex-col items-center justify-between px-[6vw] pt-6 bg-gradient-to-b from-indigo-500 to-blue-600 text-white" style={{ minHeight: 'var(--app-vh, 100svh)' }}>
         {/* Текст приветствия */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="flex flex-col items-center text-center gap-3 mt-24"
+          className="flex flex-col items-center text-center gap-3 mt-24 max-w-[88vw]"
         >
           <h1 className="text-3xl font-bold">Добро пожаловать!</h1>
           <p className="text-base text-white/80 max-w-md">

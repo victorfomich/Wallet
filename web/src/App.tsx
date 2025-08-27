@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import WebApp from '@twa-dev/sdk'
 import { Outlet, Link, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { AppRoot, Button, Section, Cell, List } from '@telegram-apps/telegram-ui'
+import Onboarding from './pages/Onboarding'
 import '@telegram-apps/telegram-ui/dist/styles.css'
 
 function Layout() {
@@ -63,8 +64,9 @@ function Profile() {
 }
 
 const router = createBrowserRouter([
+  { path: '/', element: <Onboarding /> },
   {
-    path: '/',
+    path: '/app',
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },

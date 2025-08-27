@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Button } from '@telegram-apps/telegram-ui'
+import { AppRoot, Button } from '@telegram-apps/telegram-ui'
 import WebApp from '@twa-dev/sdk'
 
 export default function Onboarding() {
@@ -9,6 +9,7 @@ export default function Onboarding() {
   }
 
   return (
+    <AppRoot>
     <div className="min-h-screen flex flex-col items-center justify-between bg-white text-[#0F172A] dark:bg-[#0F172A] dark:text-white">
       <header className="w-full px-4 py-3 flex justify-end">
         <button className="opacity-70 text-sm">Skip</button>
@@ -38,6 +39,7 @@ export default function Onboarding() {
         <Button size="l" style={{ width: '100%' }} onClick={handleStart}>Go to wallet</Button>
       </footer>
     </div>
+    </AppRoot>
   )
 }
 

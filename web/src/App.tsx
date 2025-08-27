@@ -17,8 +17,8 @@ function Layout() {
         </main>
         <nav className="fixed bottom-0 left-0 right-0 border-t p-3 bg-background/80 backdrop-blur">
           <div className="flex gap-3 justify-around">
-            <Link to="/" className="underline">Home</Link>
-            <Link to="/profile" className="underline">Profile</Link>
+            <Link to="/home" className="underline">Home</Link>
+            <Link to="/app/profile" className="underline">Profile</Link>
           </div>
         </nav>
       </div>
@@ -65,6 +65,7 @@ function Profile() {
 
 const router = createBrowserRouter([
   { path: '/', element: <Onboarding /> },
+  { path: '/home', element: <Layout />, children: [ { index: true, element: <Home /> } ] },
   {
     path: '/app',
     element: <Layout />,

@@ -18,9 +18,29 @@ export default function WelcomeScreen() {
     const onChange = () => applyVH()
     try { (WebApp as any).onEvent?.('viewportChanged', onChange) } catch {}
     window.addEventListener('resize', onChange)
+    // Lock scroll/overscroll/selection
+    const html = document.documentElement
+    const body = document.body
+    const prev = {
+      htmlOverflow: html.style.overflow,
+      htmlOverscroll: (html.style as any).overscrollBehavior,
+      bodyOverflow: body.style.overflow,
+      bodyTouchAction: (body.style as any).touchAction,
+      bodyUserSelect: (body.style as any).userSelect,
+    }
+    html.style.overflow = 'hidden'
+    ;(html.style as any).overscrollBehavior = 'none'
+    body.style.overflow = 'hidden'
+    ;(body.style as any).touchAction = 'none'
+    ;(body.style as any).userSelect = 'none'
     return () => {
       try { (WebApp as any).offEvent?.('viewportChanged', onChange) } catch {}
       window.removeEventListener('resize', onChange)
+      html.style.overflow = prev.htmlOverflow
+      ;(html.style as any).overscrollBehavior = prev.htmlOverscroll
+      body.style.overflow = prev.bodyOverflow
+      ;(body.style as any).touchAction = prev.bodyTouchAction
+      ;(body.style as any).userSelect = prev.bodyUserSelect
     }
   }, [])
 
@@ -30,7 +50,7 @@ export default function WelcomeScreen() {
 
   return (
     <AppRoot>
-      <div className="flex flex-col items-center justify-between p-6 bg-gradient-to-b from-indigo-500 to-blue-600 text-white" style={{ minHeight: 'var(--app-vh, 100svh)' }}>
+      <div className="fixed inset-0 flex flex-col items-center justify-between p-6 bg-gradient-to-b from-indigo-500 to-blue-600 text-white" style={{ minHeight: 'var(--app-vh, 100svh)' }}>
         {/* Текст приветствия */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
